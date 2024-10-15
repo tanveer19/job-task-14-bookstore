@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <div>
-      <div className="navbar bg-base-100 justify-center">
+      <div className="navbar bg-base-100 justify-center my-5">
         <div className="">
           <a className="btn btn-ghost text-xl">Bookstore</a>
         </div>
