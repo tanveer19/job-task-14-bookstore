@@ -6,13 +6,11 @@ import LazyLoad from "react-lazy-load";
 const Home = () => {
   const [showBooks, setShowBooks] = useState([]);
   useEffect(() => {
-    console.time("fetchBooks");
     fetch("https://gutendex.com/books")
       .then((res) => res.json())
 
       .then((data) => {
-        console.timeEnd("fetchBooks");
-        console.log(data.results.length);
+        console.log(data.results);
         setShowBooks(data.results);
       })
       .catch((error) => {
@@ -21,11 +19,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-wrap gap-2 justify-center m-5">
       {showBooks.map((book) => (
         <div
           key={book.id}
-          className="card card-compact bg-base-100 w-96 shadow-xl"
+          className="card card-compact bg-base-100 w-96 shadow-xl p-3"
         >
           <figure>
             <LazyLoad height={200} offset={100}>
@@ -36,8 +34,11 @@ const Home = () => {
               />
             </LazyLoad>
           </figure>
-          <div className="card-body flex flex-col items-center">
+          <div className="card-body items-center ">
             <h2 className="card-title text-center">{book.title}</h2>
+            <p>{book.authors?.[0]?.name}</p>
+            <p>ID: {book.id}</p>
+            <p>{book.subjects[0]}</p>
             <div className="card-actions ">
               <button className="btn btn-primary">Wishlist</button>
             </div>
