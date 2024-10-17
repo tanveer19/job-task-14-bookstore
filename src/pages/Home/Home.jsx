@@ -10,7 +10,7 @@ const Home = () => {
       .then((res) => res.json())
 
       .then((data) => {
-        console.log(data.results);
+        // console.log(data.results);
         setShowBooks(data.results);
       })
       .catch((error) => {
@@ -36,7 +36,7 @@ const Home = () => {
           </figure>
           <div className="card-body items-center ">
             <h2 className="card-title text-center">{book.title}</h2>
-            <p>{book.authors?.[0]?.name}</p>
+            <p>Author: {book.authors?.[0]?.name ?? "Unknown"}</p>
             <p>ID: {book.id}</p>
             <p>{book.subjects[0]}</p>
             <div className="card-actions ">
