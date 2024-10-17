@@ -51,7 +51,7 @@ const Header = () => {
           </form>
         </div>
       </div>
-      <div className="text-center">
+      <div className="flex flex-col gap-3 max-w-full w-2/3 mx-auto border rounded-xl p-3">
         {books.length > 0 && <BookSearch books={books}></BookSearch>}
       </div>
     </div>
