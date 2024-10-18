@@ -4,7 +4,7 @@ const BookSearch = ({ books }) => {
   return (
     <>
       {books.map((book) => (
-        <div key={book.id} className="flex items-center gap-3">
+        <div key={book.id} className="flex items-center gap-3 border p-1 ">
           {book.formats && book.formats["image/jpeg"] ? (
             <img
               className="w-8 h-8"

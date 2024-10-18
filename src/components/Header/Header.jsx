@@ -3,29 +3,46 @@ import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import BookSearch from "../BookSearch/BookSearch";
+import { useEffect } from "react";
 
 const Header = () => {
-  const [books, setBooks] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [books, setBooks] = useState([]);
+  const [debouncedSearchText, setDebouncedSearchText] = useState("");
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchText(searchText);
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchText]);
+
+  useEffect(() => {
+    if (debouncedSearchText) {
+      // fetch
+      fetch(`https://gutendex.com/books?q=${debouncedSearchText}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setBooks(data.results);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [debouncedSearchText]);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setSearchText(e.target.value);
 
     // handle empty search
     if (searchText.trim() === "") {
       return;
     }
-
-    // fetch
-    fetch(`https://gutendex.com/books?search=${searchText}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBooks(data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   };
   return (
     <div>
@@ -39,9 +56,10 @@ const Header = () => {
           <form>
             <div className="form-control relative">
               <input
-                onChange={(e) => setSearchText(e.target.value)}
                 type="text"
-                placeholder="Search Books"
+                value={searchText}
+                onChange={handleSearch}
+                placeholder="Search books"
                 className="input input-bordered w-32 md:w-96 bg-gray-100"
               />
               <button className="absolute top-4 right-5" onClick={handleSearch}>
@@ -51,7 +69,7 @@ const Header = () => {
           </form>
         </div>
       </div>
-      <div className="flex flex-col gap-3 max-w-full w-2/3 mx-auto border rounded-xl p-3">
+      <div className="flex flex-col gap-3 max-w-full w-2/3 mx-auto bg-white rounded-xl p-3">
         {books.length > 0 && <BookSearch books={books}></BookSearch>}
       </div>
     </div>
