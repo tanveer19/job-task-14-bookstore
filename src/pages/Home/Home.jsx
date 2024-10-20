@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LazyLoad from "react-lazy-load";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
   const [showBooks, setShowBooks] = useState([]); // Books to display
@@ -113,71 +114,74 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center m-5">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {showBooks.map((book) => (
-              <div
-                key={book.id}
-                className="card card-compact bg-base-100 w-96 shadow-xl p-3"
-              >
-                <figure>
-                  <LazyLoad height={200} offset={100}>
-                    <img
-                      className="w-48 h-72"
-                      src={book.formats["image/jpeg"]}
-                      alt="book cover"
-                    />
-                  </LazyLoad>
-                </figure>
-                <div className="card-body items-center">
-                  <h2 className="card-title text-center">{book.title}</h2>
-                  <p>Author: {book.authors?.[0]?.name ?? "Unknown"}</p>
-                  <p>ID: {book.id}</p>
-                  <p>{book.subjects[0]}</p>
-                  <div className="card-actions flex justify-center w-full">
-                    {/* Heart Icon for Wishlist Toggle */}
-                    <button
-                      className="text-red-500 text-2xl"
-                      onClick={() => toggleWishlist(book.id)}
-                    >
-                      {wishlist.includes(book.id) ? (
-                        <FaHeart />
-                      ) : (
-                        <FaRegHeart />
-                      )}
-                    </button>
+    <div className="">
+      <SearchBar></SearchBar>
+      <div className="flex flex-col items-center m-5">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {showBooks.map((book) => (
+                <div
+                  key={book.id}
+                  className="card card-compact bg-base-100 w-96 shadow-xl p-3"
+                >
+                  <figure>
+                    <LazyLoad height={200} offset={100}>
+                      <img
+                        className="w-48 h-72"
+                        src={book.formats["image/jpeg"]}
+                        alt="book cover"
+                      />
+                    </LazyLoad>
+                  </figure>
+                  <div className="card-body items-center">
+                    <h2 className="card-title text-center">{book.title}</h2>
+                    <p>Author: {book.authors?.[0]?.name ?? "Unknown"}</p>
+                    <p>ID: {book.id}</p>
+                    <p>{book.subjects[0]}</p>
+                    <div className="card-actions flex justify-center w-full">
+                      {/* Heart Icon for Wishlist Toggle */}
+                      <button
+                        className="text-red-500 text-2xl"
+                        onClick={() => toggleWishlist(book.id)}
+                      >
+                        {wishlist.includes(book.id) ? (
+                          <FaHeart />
+                        ) : (
+                          <FaRegHeart />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* Pagination Controls */}
-          <div className="flex justify-center items-center mt-6 space-x-2">
-            <button
-              className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              Previous
-            </button>
+            {/* Pagination Controls */}
+            <div className="flex justify-center items-center mt-6 space-x-2">
+              <button
+                className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
+                onClick={() => handlePageChange(currentPage - 1)}
+              >
+                Previous
+              </button>
 
-            {renderPageNumbers()}
+              {renderPageNumbers()}
 
-            <button
-              className={`btn ${
-                currentPage === totalPages ? "btn-disabled" : ""
-              }`}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
+              <button
+                className={`btn ${
+                  currentPage === totalPages ? "btn-disabled" : ""
+                }`}
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
