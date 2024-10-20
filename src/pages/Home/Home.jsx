@@ -115,7 +115,7 @@ const Home = () => {
   };
 
   return (
-    <div className="">
+    <div className="w-full max-w-full overflow-x-hidden">
       <SearchBar></SearchBar>
       <div className="flex flex-col items-center m-5">
         {loading ? (
@@ -166,7 +166,7 @@ const Home = () => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center items-center mt-6 space-x-2">
+            <div className="flex justify-center flex-wrap overflow-x-auto m-2 space-x-2 space-y-1 py-4">
               <button
                 className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
                 onClick={() => handlePageChange(currentPage - 1)}
