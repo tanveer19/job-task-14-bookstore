@@ -77,9 +77,9 @@ const SearchBar = () => {
               value={searchText}
               onChange={handleSearch} // Call handleSearch on input change
               placeholder="Search books"
-              className="input input-bordered  md:w-96 bg-gray-100 "
+              className="input input-bordered w-full md:w-96 bg-gray-100 pr-10 "
             />
-            <FaMagnifyingGlass className="absolute top-4 -right-12"></FaMagnifyingGlass>
+            <FaMagnifyingGlass className="absolute top-4 right-4 md:-right-10 text-gray-500"></FaMagnifyingGlass>
           </div>
         </form>
       </div>
