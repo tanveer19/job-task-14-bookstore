@@ -6,6 +6,7 @@ import ErrorPage from "./error-page.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
+import BookDetails from "./pages/BookDetails/BookDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist></Wishlist>,
+      },
+      {
+        path: "/book/:id",
+        element: <BookDetails></BookDetails>,
       },
     ],
   },

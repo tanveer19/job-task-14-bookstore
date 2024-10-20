@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LazyLoad from "react-lazy-load";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [showBooks, setShowBooks] = useState([]); // Books to display
@@ -141,7 +142,12 @@ const Home = () => {
                     <p>Author: {book.authors?.[0]?.name ?? "Unknown"}</p>
                     <p>ID: {book.id}</p>
                     <p>{book.subjects[0]}</p>
-                    <div className="card-actions flex justify-center w-full">
+                    <div className="card-actions flex justify-center items-center w-full">
+                      {/* link to book details page */}
+                      <Link to={`/book/${book.id}`} className="btn btn-primary">
+                        View Details
+                      </Link>
+
                       {/* Heart Icon for Wishlist Toggle */}
                       <button
                         className="text-red-500 text-2xl"

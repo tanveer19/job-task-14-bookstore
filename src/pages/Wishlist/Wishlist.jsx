@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LazyLoad from "react-lazy-load";
 import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Wishlist = () => {
   const [wishlistBooks, setWishlistBooks] = useState([]);
@@ -66,7 +67,11 @@ const Wishlist = () => {
               <p>Author: {book.authors?.[0]?.name ?? "Unknown"}</p>
               <p>ID: {book.id}</p>
               <p>{book.subjects[0]}</p>
-              <div className="card-actions flex justify-center w-full">
+              <div className="card-actions flex justify-center items-center w-full">
+                {/* link to book details page */}
+                <Link to={`/book/${book.id}`} className="btn btn-primary">
+                  View Details
+                </Link>
                 {/* Remove from Wishlist Button */}
                 <button
                   className="text-red-500 text-2xl"
