@@ -1,7 +1,6 @@
-Live site: https://job-task-14-bookstore.vercel.app/
-
-📚 Bookstore Application
-This project is a Bookstore Application that allows users to explore a vast collection of books using the Gutendex API. The application is built using React and Tailwind CSS and includes features such as real-time search, genre-based filtering, a wishlist feature, and pagination.
+📚 Bookstore Application:
+This project is a Bookstore Application that allows users to explore a vast collection of books using the Gutendex API.
+The application is built using React and Tailwind CSS and includes features such as real-time search, genre-based filtering, a wishlist feature, and pagination.
 
 🎯 Features
 Book Listing: Display a list of books with details like title, author, cover image, and subjects.
@@ -18,3 +17,5 @@ Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
 LazyLoad: A React component used to lazily load book images.
 React Router: For managing page navigation and routes within the application.
 Gutendex API: A public API used to fetch book data from Project Gutenberg.
+
+Live site: https://job-task-14-bookstore.vercel.app/
